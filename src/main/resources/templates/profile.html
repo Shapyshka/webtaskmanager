@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <link rel="icon" href="https://i.imgur.com/3c6LWsv.png">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css2?family=Material+Icons+Outlined&v=1648034229241">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <title>Профиль</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<header th:insert="blocks/header :: header" ></header>
+
+<body style="background-color:#dddddd; margin-top:115px">
+
+
+<br>
+<h1 align="center">Профиль</h1>
+<br>
+<table width="100%">
+    <tr>
+        <td align="center" width="15%">
+
+        </td>
+        <td align="center" width="60%">
+
+                <img class="rounded-circle" th:src="${pfp}" height="96px" width="96px" >
+            <br>
+            <br>
+            Имя:
+                <h2 th:text="${username}" ></h2>
+            Адрес электронной почты:
+                <h2 th:text="${email}" ></h2>
+            <div th:if="${phone!=null}">
+            Номер телефона:
+            <h2 th:text="${phone}" ></h2>
+            </div>
+
+            <br>
+            <br>
+
+            <form class="form-inline" th:action="@{/logout}" method="post">
+                <button type="submit" class="btn btn-danger">
+                    <span class="material-icons-outlined" style="font-size:15px">
+logout
+</span>
+                    Выйти из уч. записи
+                </button>
+
+            </form>
+            <br>
+        </td>
+        <td align="center" width="15%">
+
+        </td>
+    </tr>
+</table>
+
+
+<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>

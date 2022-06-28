@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <link rel="icon" href="https://i.imgur.com/3c6LWsv.png">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css2?family=Material+Icons+Outlined&v=1648034229241">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <link href="bootstrap/js/bootstrap.min.js" rel="stylesheet" media="screen">
+    <link href="bootstrap/js/bootstrap-modal.js" rel="stylesheet" media="screen">
+    <link href="bootstrap/js/bootstrap-transition.js" rel="stylesheet" media="screen">
+    <title>Создание задания</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<header th:insert="blocks/header :: header" ></header>
+
+<body style="background-color:#dddddd; margin-top:115px; align:center" >
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<br>
+<h1 align="center">Создание задания</h1>
+
+<div align="center"  >
+    <div align="center" class="rounded" style="background-color:#aaaaaa;width:60%">
+
+<form method="post" action="/tasks/addtask" th:object="${task}" align="center" >
+    <table width="100%">
+        <tr>
+            <td align="center" width="50%" valign="top">
+                <br>
+                <h4>
+                    Основная информация:
+                </h4>
+                <label>
+                    Название:
+                    <br>
+                    <input type="text" name="name" id ="name" placeholder="Название" class="form-control" th:value="${nomus}">
+                    <div style="color:red" th:if = "${error1!=null}" th:text="${error1}"></div>
+                </label>
+                        <div style="align:center">
+                            Описание (не обязательно):
+                            <br>
+                            <textarea style="width:66%; align:center" name="details" id ="details" th:text="${detoilus}"  placeholder="Описание" class="form-control"></textarea>
+                            <div style="color:red" th:if = "${error2!=null}" th:text="${error2}"></div>
+
+                        </div>
+
+                <label>
+                    Выполнить до:
+                    <br>
+                    <input type="datetime-local" name="until" id ="until"  th:value="${untilus}" class="form-control">
+                    <div style="color:red" th:if = "${error3!=null}" th:text="${error3}"></div>
+                </label>
+                <br>
+
+
+            </td>
+
+
+            <td align="center" valign="top">
+                <br>
+                <h4>
+                   Исполнители:
+                </h4>
+                            <script>
+                    function myFunction() {
+                        let input = document.getElementById('sparam').value;
+                        input=input.toLowerCase();
+                        let x = document.getElementsByClassName('workers');
+
+                        for (i = 0; i < x.length; i++) {
+                            if (!x[i].innerHTML.toLowerCase().includes(input)) {
+                                x[i].style.display="none";
+                            }
+                            else {
+                                x[i].style.display="block";
+                            }
+                        }
+                    }
+                   </script>
+
+                <div align="center" style="margin-left:5%;margin-right:5%;">
+                    <input oninput="myFunction()" type="search" id="sparam" placeholder="Поиск..." class="form-control">
+                </div>
+                <div class="rounded" align="left" style="margin-left:5%;overflow-y: scroll; height:200px; background-color:#888888">
+                    <fieldset id="myUL2">
+                        <div class="workers" style="font-size:17px;margin-left:2%" th:each="el:${keyz}">
+                            <label >
+                                <input  name="doer" th:id="${el.toString()}" type="checkbox"  th:text="${namez.get(el).toString()}" th:value="${el.toString()}"> <!--th:data-id="${el.toString()}" th:data-name="${namez.get(el).toString()}" th:onchange="fun(this.getAttribute('data-id'),this.getAttribute('data-name'))"> -->
+                            </label>
+                            <br>
+                        </div>
+                    </fieldset>
+                </div>
+                <div style="color:red" th:if = "${error4!=null}" th:text="${error4}"></div>
+
+            </td>
+
+        </tr>
+    </table>
+
+    <div style="color:red" th:if = "${error!=null}" th:text="${error}"></div>
+    <br>
+    <button style="color:#ffffff" class="btn btn-success" type="submit">
+
+       <span class="material-icons-outlined" style="font-size:15px">
+                        done
+                        </span>Создать задание</button >
+    <br>
+
+</form>
+<br>
+</div>
+</div>
+<footer th:insert="blocks/footer :: Footer" ></footer>
+</body>
+</html>

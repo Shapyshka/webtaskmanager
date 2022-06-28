@@ -1,0 +1,63 @@
+<div align="center">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
+        <table width="90%">
+        <tr>
+            <td align="center" width="40%">
+<!--                <div class="btn-group">-->
+
+                    <a style="margin-left:20%" class="navbar-brand" href="/">
+                        <img src="https://i.imgur.com/3c6LWsv.png" height="30px" width="35px">
+                        Задачник
+                    </a>
+<!--                </div>-->
+            </td>
+            <td align="center" width="30%">
+                <ul class="navbar-nav" style="margin-left:20%" >
+                    <div th:if="${my==0}">
+                        <li class="nav-item" style="text-decoration: underline">
+                            <a href="/tasks/" class="nav-link" style="text-align:center;color:#ffffff">Задания от меня</a>
+                        </li>
+                    </div>
+                    <div th:if="${my==0}">
+                        <li class="nav-item">
+                            <a href="/metasks/" class="nav-link" style="text-align:center">Задания для меня</a>
+                        </li>
+                    </div>
+                    <div th:if="${my==1}">
+                        <li class="nav-item" >
+                            <a href="/tasks/" class="nav-link" style="text-align:center">Задания от меня</a>
+                        </li>
+                    </div>
+                    <div th:if="${my==1}">
+                        <li class="nav-item" style="text-decoration: underline">
+                            <a href="/metasks/"  class="nav-link" style="text-align:center;color:#ffffff">Задания для меня</a>
+                        </li>
+                    </div>
+                    <div th:if="${my==2}">
+                        <li class="nav-item" >
+                            <a href="/tasks/" class="nav-link" style="text-align:center">Задания от меня</a>
+                        </li>
+                    </div>
+                    <div th:if="${my==2}">
+                        <li class="nav-item" >
+                            <a href="/metasks/"  class="nav-link" style="text-align:center">Задания для меня</a>
+                        </li>
+                    </div>
+
+                </ul>
+            </td>
+            <td align="center" width="30%">
+                <a href="/profile">
+                    <img class="rounded-circle" th:src="${pfp}" height="32px" width="32px">
+                </a>
+                <a href="/profile" class="nav-link">
+                    <div th:text="${username}" style="color:#ffffff"></div>
+                </a>
+
+            </td>
+        </tr>
+        </table>
+
+
+    </nav>
+</div>
