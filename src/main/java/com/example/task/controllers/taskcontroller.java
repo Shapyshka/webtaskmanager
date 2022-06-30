@@ -110,7 +110,6 @@ public static final String CYRILLIC_TO_LATIN = "Cyrillic-Latin";
 
 
 
-            return "redirect:/error/noacc";
         }
         model.addAttribute("my",0);
 

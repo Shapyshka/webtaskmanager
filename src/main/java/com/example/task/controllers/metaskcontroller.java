@@ -356,9 +356,7 @@ public class metaskcontroller extends HttpServlet {
 
         } catch (Exception e) {
             e.printStackTrace();
-            model.addAttribute("my",1);
 
-            return "redirect:/error/noacc";
         }
         model.addAttribute("my",1);
 

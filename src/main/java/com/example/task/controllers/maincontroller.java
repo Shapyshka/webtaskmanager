@@ -32,7 +32,7 @@ public class maincontroller {
     }
     @GetMapping("/success")
     public String success(Model model) throws IOException, ParseException {
-        if(Objects.equals(cocok, "")) {
+        //if(Objects.equals(cocok, "")) {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             if (!(authentication instanceof AnonymousAuthenticationToken)) {
                 Object prince = authentication.getPrincipal();
@@ -74,37 +74,37 @@ public class maincontroller {
             }
 
 
-        }
+        //}
             return "redirect:/tasks/";
     }
 
-    @GetMapping("/error/{ercode}")
-    public String error(@PathVariable("ercode") String ercode, Model model) throws IOException, ParseException {
-        if (Objects.equals(maincontroller.cocok, "")){
-            return "redirect:/success/";
-        }
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String idd="";
-        if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            Object prince = authentication.getPrincipal();
-            idd=((DefaultOidcUser) prince).getName();
-            String pfp = ((DefaultOidcUser) prince).getPicture();
-            model.addAttribute("pfp",pfp);
-            String username=((DefaultOidcUser) prince).getGivenName()+" "+((DefaultOidcUser) prince).getFamilyName();
-            model.addAttribute("username",username);
-
-            //model.addAttribute("token",((DefaultOidcUser) prince).getIdToken().getTokenValue());
-
-        }
-
-        if(Objects.equals(ercode, "noacc"))
-            model.addAttribute("error","Произошла ошибка. Возможно, стоит попробовать авторизоваться с помощью другого аккаунта. \n Если проблема не исчезла, то обратитесь к разработчику");
-        else
-            model.addAttribute("error","Неизвестная ошибка.");
-        model.addAttribute("ercode",ercode);
-        model.addAttribute("my",2);
-        return "errorpage";
-    }
+//    @GetMapping("/error/{ercode}")
+//    public String error(@PathVariable("ercode") String ercode, Model model) throws IOException, ParseException {
+//        if (Objects.equals(maincontroller.cocok, "")){
+//            return "redirect:/success/";
+//        }
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String idd="";
+//        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+//            Object prince = authentication.getPrincipal();
+//            idd=((DefaultOidcUser) prince).getName();
+//            String pfp = ((DefaultOidcUser) prince).getPicture();
+//            model.addAttribute("pfp",pfp);
+//            String username=((DefaultOidcUser) prince).getGivenName()+" "+((DefaultOidcUser) prince).getFamilyName();
+//            model.addAttribute("username",username);
+//
+//            //model.addAttribute("token",((DefaultOidcUser) prince).getIdToken().getTokenValue());
+//
+//        }
+//
+//        if(Objects.equals(ercode, "noacc"))
+//            model.addAttribute("error","Произошла ошибка. Возможно, стоит попробовать авторизоваться с помощью другого аккаунта. \n Если проблема не исчезла, то обратитесь к разработчику");
+//        else
+//            model.addAttribute("error","Неизвестная ошибка.");
+//        model.addAttribute("ercode",ercode);
+//        model.addAttribute("my",2);
+//        return "errorpage";
+//    }
 
 
 }
